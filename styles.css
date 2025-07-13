@@ -73,7 +73,8 @@ form:last-child {
 
 /* Input Styles */
 input[type="file"],
-input[type="text"] {
+input[type="text"],
+textarea {
     width: 100%;
     padding: 16px 20px;
     border: 2px solid #e5e7eb;
@@ -83,21 +84,52 @@ input[type="text"] {
     background: white;
     transition: all 0.2s ease;
     margin-bottom: 16px;
+    resize: vertical;
+    min-height: 120px;
 }
 
 input[type="file"]:focus,
-input[type="text"]:focus {
+input[type="text"]:focus,
+textarea:focus {
     outline: none;
     border-color: #3b82f6;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
-input[type="text"] {
+input[type="text"],
+textarea {
     color: #374151;
 }
 
-input[type="text"]::placeholder {
+input[type="text"]::placeholder,
+textarea::placeholder {
     color: #9ca3af;
+}
+
+/* Special styling for textarea */
+textarea {
+    line-height: 1.5;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+textarea::-webkit-scrollbar {
+    width: 8px;
+}
+
+textarea::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
 }
 
 /* File Input Styling */
@@ -175,7 +207,8 @@ button:focus {
     }
     
     input[type="file"],
-    input[type="text"] {
+    input[type="text"],
+    textarea {
         padding: 14px 16px;
         font-size: 0.95rem;
     }
@@ -236,7 +269,8 @@ button:focus {
 
 /* Focus styles for better accessibility */
 button:focus-visible,
-input:focus-visible {
+input:focus-visible,
+textarea:focus-visible {
     outline: 2px solid #3b82f6;
     outline-offset: 2px;
 }

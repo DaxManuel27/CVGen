@@ -5,27 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CVGen</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- Add PDF.js for PDF parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body>
     <div class="container">
         <h1>CVGen</h1>
         <p>Generate a CV from a job description</p>
         
-        <form>
-            <input type="file" id="fileInput" accept=".pdf">
-            <button type="submit" onclick="handleResumeUpload()">Upload Resume</button>
+        <form id="resumeForm">
+            <input type="file" id="fileInput" accept=".pdf,.txt,.docx">
+            <button type="button" onclick="handleResumeUpload()">Upload Resume</button>
         </form>
         
-        <form>
-            <input type="text" placeholder="Job Description" id="jobDescription">
-            <button type="submit">Generate CV</button>
+        <form id="jobDescForm">
+            <!-- Change to textarea for better UX -->
+            <textarea id="jobDescription" placeholder="Enter job description here..." rows="4"></textarea>
+            <button type="button" onclick="generateCV()">Generate CV</button>
         </form>
-        <form>
-            <input "">
-        </form>
-        <form>
-            <button type="submit">Download CV</button>
-        </form>
+        
+        <!-- Add output area -->
+        <div id="cvOutput" style="display: none;">
+            <h2>Generated Cover Letter:</h2>
+            <div id="cvContent"></div>
+            <button type="button" onclick="downloadCV()">Download CV</button>
+        </div>
     </div>
+    
+    <script>
+        // Configure PDF.js worker
+        if (typeof pdfjsLib !== 'undefined') {
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        }
+    </script>
+    <script src="script.js"></script>
 </body>
 </html>
